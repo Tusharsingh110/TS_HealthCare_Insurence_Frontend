@@ -29,7 +29,7 @@ const FileClaim = () => {
     try {
       // Make API request to file claim
       // console.log(policy.policyId +' '+policy.userId+' '+claimDetails.claimAmount);
-      const response = await axios.post('http://localhost:3000/api/claims/createClaim', {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/createClaim`, {
         policyId: policy.policyId,
         userId: policy.userId,
         amount: claimDetails.claimAmount

@@ -18,7 +18,7 @@ const UserDashboard = () => {
     const fetchUserPolicies = async () => {
       try {
         // Fetch user policies array with authorization token in headers
-        const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}` // Include JWT token in request headers
           }
@@ -29,7 +29,7 @@ const UserDashboard = () => {
         // Fetch policy details for each policy
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId; // Assuming the policy object has a policyId field
-          const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
             headers: {
               Authorization: `Bearer ${token}` // Include JWT token in request headers
             }
@@ -47,7 +47,7 @@ const UserDashboard = () => {
     const fetchUserClaims = async () => {
       try {
         // Fetch user claims array with authorization token in headers
-        const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}` // Include JWT token in request headers
           }

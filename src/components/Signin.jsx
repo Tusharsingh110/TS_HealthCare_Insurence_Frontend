@@ -13,7 +13,7 @@ function Signin() {
     e.preventDefault(); // Prevent default form submission behavior
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/signin",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/signin`,
         { email, password }
       );
       setLoggedIn(true);

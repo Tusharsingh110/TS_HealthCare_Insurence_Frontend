@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
+
 import AdminClaimCard from "./AdminClaimCard"; // Import AdminClaimCard component
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +16,7 @@ const AdminPanel = () => {
       try {
         const token = localStorage.getItem("token"); // Retrieve JWT token from localStorage
         const response = await axios.post(
-          "http://localhost:3000/api/claims/allClaims",
+          `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
           { userId: userId },
           {
             headers: {
@@ -46,7 +47,7 @@ const AdminPanel = () => {
       const { userId, policyId, amount } = claim;
 
       const response = await axios.put(
-        `http://localhost:3000/api/claims/updateClaim/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${claimId}`,
         {
           userId,
           policyId,
@@ -92,7 +93,7 @@ const AdminPanel = () => {
       const { userId, policyId, amount } = claim;
 
       const response = await axios.put(
-        `http://localhost:3000/api/claims/updateClaim/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${claimId}`,
         {
           userId,
           policyId,
