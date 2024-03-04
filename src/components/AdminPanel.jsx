@@ -47,7 +47,7 @@ const AdminPanel = () => {
       const { userId, policyId, amount } = claim;
 
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           userId,
           policyId,
