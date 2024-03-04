@@ -18,8 +18,8 @@ const UserDashboard = () => {
     const fetchUserPolicies = async () => {
       try {
         // Fetch user policies array with authorization token in headers
-        // const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}` // Include JWT token in request headers
           }
