@@ -8,11 +8,12 @@ function Signin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  // console.log(process)
   const handlesignin = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     try {
       const response = await axios.post(
+        // `http://localhost:3000/api/auth/signin`,
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/signin`,
         { email, password }
       );

@@ -16,6 +16,7 @@ const AdminPanel = () => {
       try {
         const token = localStorage.getItem("token"); // Retrieve JWT token from localStorage
         const response = await axios.post(
+          // `http://localhost:3000/api/claims/allClaims`,
           `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
           { userId: userId },
           {
@@ -45,8 +46,9 @@ const AdminPanel = () => {
       }
 
       const { userId, policyId, amount } = claim;
-
+      // console.log(claim)
       const response = await axios.put(
+        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
         `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           userId,
@@ -68,6 +70,7 @@ const AdminPanel = () => {
             // Update the status of the claim
             return { ...claim, status: "approved" };
           }
+          console.log(claim)
           return claim;
         });
       });
@@ -93,7 +96,8 @@ const AdminPanel = () => {
       const { userId, policyId, amount } = claim;
 
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${claimId}`,
+        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           userId,
           policyId,
