@@ -41,7 +41,6 @@ const FileClaim = () => {
         }
       }
       );
-      // console.log('Claim filed successfully:', response.data);
       // Alert the user
       alert('Claim filed successfully!');
       // Navigate to userDashboard

@@ -17,13 +17,11 @@ function Register({ history }) {
         password,
         dob,
       });
-    ////   console.log(response)
        alert("User Created Successfully!!!"); // Assuming the response contains some information about the registration
       navigate('/signIn')
-    ////   history.push('/signin'); // Redirect to signin page upon successful registration
     } catch (error) {
-      alert(error.response.data.msg)
-      setError(error.response.data.message);
+      alert(error.response.data.error)
+      setError(error.response.data.error);
     }
   };
   

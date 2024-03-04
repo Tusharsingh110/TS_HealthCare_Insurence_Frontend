@@ -13,7 +13,6 @@ const UserDashboard = () => {
   const [userPolicies, setUserPolicies] = useState([]);
   const [userClaims, setUserClaims] = useState([]);
   const [userData, setUserData] = useState({});
- //// console.log(userPolicies)
   useEffect(() => {
     const fetchUserPolicies = async () => {
       try {
@@ -26,11 +25,9 @@ const UserDashboard = () => {
         });
         const userPoliciesData = response.data.policies;
         setUserData(response.data);
-        //// console.log(response.)
         // Fetch policy details for each policy
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId; // Assuming the policy object has a policyId field
-          // console.log(policyId)
           // const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
           const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
             headers: {

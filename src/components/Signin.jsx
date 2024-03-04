@@ -27,8 +27,8 @@ function Signin() {
       }
     } catch (error) {
       console.error("Sign-in failed:", error);
-      setError(error.response.data.message);
-      alert(error.response.data.message);
+      setError(error.response.data.error);
+      alert(error.response.data.error);
     }
   };
 
