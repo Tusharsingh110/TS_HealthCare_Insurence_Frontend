@@ -11,6 +11,7 @@ import FileClaim from './components/FileClaim';
 import {LoginContext} from './contexts/LoginContext'
 import AdminPanel from './components/AdminPanel';
 import UpdateClaim from './components/UpdateClaim';
+import Home from './components/Home';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
       <div className="gradient"></div>
       <Header />
       <Routes>
+        <Route path='/' element={<Home/>}></Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/signIn'  element={<SignIn/>}/>  
         <Route path='/admin'  element={<AdminPanel/>}/>  
