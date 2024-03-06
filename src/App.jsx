@@ -12,6 +12,7 @@ import {LoginContext} from './contexts/LoginContext'
 import AdminPanel from './components/AdminPanel';
 import UpdateClaim from './components/UpdateClaim';
 import Home from './components/Home';
+import ListPolicies from './components/ListPolicies';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,7 +30,7 @@ const App = () => {
         <Route path='/userDashboard'  element={<UserDashboard/>}/>  
         <Route path='/fileClaim'  element={<FileClaim/>}/>  
         <Route path='/updateClaim'  element={<UpdateClaim/>}/>  
-        {/* <Route path='/buyPolicy'  element={<BuyPolicy/>}/>   */}
+        <Route path='/listPolicies'  element={<ListPolicies/>}/>  
       </Routes>
 
     </Router>
