@@ -12,8 +12,8 @@ const ListPolicies = () => {
     const fetchPolicies = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/${userId}`, {
-        // const response = await axios.get(`http://localhost:3000/api/policies/policiesByUserId/${userId}`, {
+        // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/api/policies/policiesByUserId/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -41,8 +41,8 @@ const ListPolicies = () => {
       updatedPolicies[index].isBuying = true;
       setPolicies(updatedPolicies);
 
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/buyPolicy`, requestData, {
-    //   await axios.post(`http://localhost:3000/api/policies/buyPolicy`, requestData, {
+    //   await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/buyPolicy`, requestData, {
+      await axios.post(`http://localhost:3000/api/policies/buyPolicy`, requestData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -57,8 +57,8 @@ const ListPolicies = () => {
 
   return (
     <>
-      <div className="my-4 max-w-[1600px] pb-2 text-lg font-bold text-left ml-20 border-gray-400 border-b-[1px]">All Policies</div>
-      <div className="max-w-[1600px] mx-auto grid lg:grid-cols-4 md:grid-cols-3 gap-6">
+      <div className="my-4 max-w-[1600px] mx-auto pb-2 text-lg  font-bold text-left border-gray-400 border-b-[1px]">All Policies</div>
+      <div className="max-w-[1600px] mx-auto justify-center grid lg:grid-cols-3 md:grid-cols-2 gap-6">
         {policies.map((policy, index) => (
           <div key={policy._id} className="bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 rounded shadow-lg text-center">
             <h2 className="text-xl font-bold border-b-[1px] border-gray-400 text-left">{policy.policyName}</h2>

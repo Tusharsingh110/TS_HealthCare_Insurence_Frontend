@@ -10,8 +10,8 @@ function Register({ history }) {
   const navigate =useNavigate();
   const handleRegister = async () => {
     try {
-      // const response = await axios.post(`http://localhost:3000/api/users/signup`, {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/signup`, {
+      const response = await axios.post(`http://localhost:3000/api/users/signup`, {
+      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/signup`, {
         username,
         email,
         password,

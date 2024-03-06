@@ -19,8 +19,8 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchUserPolicies = async () => {
       try {
-        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -29,8 +29,8 @@ const UserDashboard = () => {
         setUserData(response.data);
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId;
-          // const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
-          const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
+          const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          // const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -47,8 +47,8 @@ const UserDashboard = () => {
 
     const fetchUserClaims = async () => {
       try {
-        // const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
+        const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
 
           headers: {
             Authorization: `Bearer ${token}`
@@ -71,26 +71,38 @@ const UserDashboard = () => {
 
   return (
     <div className="user-dashboard">
-      <div className='my-4 flex-col gap-6 text-center'>
-        <div className='text-4xl my-4 py-2'> TS Health Insurance</div>
-        <div className="main1 my-4 pb-2 text-3xl ">Welcome, {userData.username}</div>
-        <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px]">
-          <div className="pb-2 pt-6 text-lg font-bold ">Your Policies</div>
-          <button className='border p-2 border-gray-[2px] my-2 hover:bg-gray-600 hover:text-white' onClick={handleBuyPolicies}>Buy Policies</button>
-        </div>
-        <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto text-center grid lg:gap-5 md:gap-3 lg:grid-cols-4 sm:grid-cols-3'>
+    <div className='my-4 flex-col gap-6 text-center'>
+      <div className='text-4xl my-4 py-2'> TS Health Insurance</div>
+      <div className="main1 my-4 pb-2 text-3xl ">Welcome, {userData.username}</div>
+      <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px] flex-wrap">
+        <div className="pb-2 pt-6 text-lg font-bold ">Your Policies</div>
+        <button className='border p-2 border-gray-[2px] my-2 hover:bg-gray-600 hover:text-white' onClick={handleBuyPolicies}>Buy Policies</button>
+      </div>
+      {userPolicies.length === 0 ? (
+        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] text-gray-600">Nothing to show here.</div>
+      ) : (
+        <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
           {userPolicies.map((policy) => (
             <PolicyCard key={policy._id} policy={policy}/>
           ))}
         </div>
-        <div className="my-4 max-w-[1600px] pb-2 text-lg font-bold text-left ml-20 border-gray-400 border-b-[1px]">Your Claims</div>
-        <div className=' max-w-[1600px] md:text-sm sm:text-[25px] mx-auto text-center grid lg:gap-5 md:gap-3 lg:grid-cols-4 sm:grid-cols-3'>
-          {userClaims.map((claim) => (
-            <ClaimsCard key={claim._id} claim={claim} userPolicies={userPolicies} />
-          ))}
-        </div>
+      )}
+      <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px] flex-wrap">
+        <div className="pb-2 pt-6 text-lg font-bold">Your Claims</div>
       </div>
+
+      {userClaims.length === 0 ? (
+        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] text-gray-600">Nothing to show here.</div>
+      ) : (
+        <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
+        {userClaims.map((claim) => (
+          <ClaimsCard key={claim._id} claim={claim} userPolicies={userPolicies} />
+        ))}
+      </div>
+      )}
     </div>
+</div>
+
   );
 }
 
