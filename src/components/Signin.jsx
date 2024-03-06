@@ -7,33 +7,37 @@ function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading,isLoading] = useState(false);
   const navigate = useNavigate();
   // console.log(process)
   const handlesignin = async (e) => {
+    isLoading(true);
     e.preventDefault(); // Prevent default form submission behavior
     try {
       const response = await axios.post(
         `http://localhost:3000/api/users/login`,
         // `${process.env.REACT_APP_BACKEND_URL}/api/users/login`,
         { email, password }
-      );
-      setLoggedIn(true);
-      const { token, userId, isAdmin } = response.data;
-      localStorage.setItem("token", token);
-      if (isAdmin) {
-        navigate("/admin", { state: { userId: userId } });
-      } else {
-        navigate("/userDashboard", { state: { userId: userId } });
+        );
+        setLoggedIn(true);
+        const { token, userId, isAdmin } = response.data;
+        localStorage.setItem("token", token);
+        if (isAdmin) {
+          navigate("/admin", { state: { userId: userId } });
+        } else {
+          navigate("/userDashboard", { state: { userId: userId } });
+        }
+      } catch (error) {
+        console.error("Sign-in failed:", error);
+        setError(error.response.data.error);
+        alert(error.response.data.error);
+      } finally {
+          isLoading(false);
       }
-    } catch (error) {
-      console.error("Sign-in failed:", error);
-      setError(error.response.data.error);
-      alert(error.response.data.error);
-    }
-  };
-
-  return (
-    <div className="main1 flex-col gap-10 pt-10 ">
+    };
+    
+    return (
+      <div className="main1 flex-col gap-10 pt-10 ">
       <div className="text-4xl">Sign In</div>
       <form onSubmit={handlesignin}>
         {" "}
@@ -59,9 +63,9 @@ function Signin() {
         <div className="main1">
           <button
             type="submit"
-            className="px-2 py-1  text-white bg-slate-800 hover:bg-slate-600"
+            className='border p-2 w-[80px] border-gray-[2px] my-2 hover:bg-gray-800 bg-gray-600 text-white'
           >
-            Sign In
+            {loading ? 'Signing In...': 'Sign In'}
           </button>
         </div>
       </form>

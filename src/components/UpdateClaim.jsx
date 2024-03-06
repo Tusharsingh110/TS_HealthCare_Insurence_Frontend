@@ -82,7 +82,7 @@ const UpdateClaim = () => {
                             id="userId"
                             name="userId"
                             value={claimDetails.userId}
-                            className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="User ID"
                             disabled
                         />
@@ -94,7 +94,7 @@ const UpdateClaim = () => {
                             id="policyId"
                             name="policyId"
                             value={claimDetails.policyId}
-                            className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Policy ID"
                             disabled
                         />
@@ -107,7 +107,7 @@ const UpdateClaim = () => {
                             name="amount"
                             value={claimDetails.amount}
                             onChange={handleChange}
-                            className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Claim Amount"
                             required
                         />
@@ -119,7 +119,7 @@ const UpdateClaim = () => {
                             id="status"
                             name="status"
                             value={claimDetails.status}
-                            className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Status"
                             disabled
                         />

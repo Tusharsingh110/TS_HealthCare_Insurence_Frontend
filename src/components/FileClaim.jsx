@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const FileClaim = () => {
+  const [loading,isLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const [claimDetails, setClaimDetails] = useState({
@@ -25,6 +26,7 @@ const FileClaim = () => {
   };
 
   const handleSubmit = async (e) => {
+    isLoading(true)
     e.preventDefault();
     try {
       // Make API request to file claim
@@ -45,14 +47,14 @@ const FileClaim = () => {
         }
       }
       );
-      // Alert the user
-      alert('Claim filed successfully!');
       // Navigate to userDashboard
       navigate('/userDashboard', { state: { userId: policy.userId } });
     } catch (error) {
       console.error('Error filing claim:', error);
       // Handle error, e.g., show error message to user
-    }
+    } finally {
+      isLoading(false);
+  }
     // Reset form after submission
     setClaimDetails({
       policyId: '',
@@ -74,7 +76,7 @@ const FileClaim = () => {
               name="policyId"
               value={policy.policyId}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Policy ID"
               disabled
               required
@@ -88,7 +90,7 @@ const FileClaim = () => {
               name="policyName"
               value={policy.policyName}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Policy Name"
               disabled
               required
@@ -102,12 +104,15 @@ const FileClaim = () => {
               name="claimAmount"
               value={claimDetails.claimAmount}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Claim Amount"
               required
             />
           </div>
-          <button type="submit" className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-600">Submit Claim</button>
+            
+        <button type='submit' className='border p-2 w-[120px] border-gray-[2px] my-2 hover:bg-gray-800 bg-gray-600 text-white'>
+          {loading ? 'Submitting...': 'Submit Claim'}
+            </button>
         </form>
       </div>
     </div>

@@ -74,7 +74,7 @@ function Register() {
           ref={captchaRef}
         />
       </div>
-      <button className='border-2 px-2 py-1  border-gray-900' onClick={handleRegister}>Register</button>
+      <button className='border p-2 w-[80px] border-gray-[2px] my-2 hover:bg-gray-800 bg-gray-600 text-white' onClick={handleRegister}>Register</button>
       {error && <p>{error}</p>}
     </div>
   );
