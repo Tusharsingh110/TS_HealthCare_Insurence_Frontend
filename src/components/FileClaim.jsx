@@ -35,8 +35,8 @@ const FileClaim = () => {
         alert('Amount can not be less than 0');
         throw new Error('Amount is less than 0');
       }
-      const response = await axios.post(`http://localhost:3000/api/claims/createClaim`, {
-      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/createClaim`, {
+      // const response = await axios.post(`http://localhost:3000/api/claims/createClaim`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/createClaim`, {
         policyId: policy.policyId,
         userId: policy.userId,
         amount: claimDetails.claimAmount

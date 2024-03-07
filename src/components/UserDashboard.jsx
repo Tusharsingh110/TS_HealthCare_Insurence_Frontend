@@ -6,6 +6,11 @@ import PolicyCard from './PolicyCard.jsx';
 import ClaimsCard from './ClaimCard.jsx';
 
 const UserDashboard = () => {
+  const [reloadKey, setReloadKey] = useState(0);
+
+  const handlePolicyDelete = () => {
+    setReloadKey(prevKey => prevKey + 1); // Update the key to force remounting PolicyCard
+  };
   const navigate = useNavigate();
   const location = useLocation();
   const userId = location.state.userId;
@@ -15,22 +20,25 @@ const UserDashboard = () => {
   const [userPolicies, setUserPolicies] = useState([]);
   const [userClaims, setUserClaims] = useState([]);
   const [userData, setUserData] = useState({});
+  const [loadingPolicies, setLoadingPolicies] = useState(false);
+  const [loadingClaims, setLoadingClaims] = useState(false);
   
   useEffect(() => {
+    setLoadingPolicies(true);
     const fetchUserPolicies = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
-        // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        });
+        });   
         const userPoliciesData = response.data.policies;
         setUserData(response.data);
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId;
-          const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
-          // const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
+          // const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -42,14 +50,17 @@ const UserDashboard = () => {
         setUserPolicies(policiesWithDetails);
       } catch (error) {
         console.error('Error fetching user policies:', error);
+      } finally {
+        setLoadingPolicies(false)
       }
     };
 
-    const fetchUserClaims = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
-        // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
 
+    const fetchUserClaims = async () => {
+      setLoadingClaims(true);
+      try {
+        // const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -57,12 +68,14 @@ const UserDashboard = () => {
         setUserClaims(response.data);
       } catch (error) {
         console.error('Error fetching user claims:', error);
+      } finally {
+        setLoadingClaims(false)
       }
     };
 
     fetchUserPolicies();
     fetchUserClaims();
-  }, [userId, token]);
+  }, [userId, token,reloadKey]);
 
   const handleBuyPolicies = () => {
     // Navigate to the listPolicies route and pass the userId as state
@@ -79,11 +92,13 @@ const UserDashboard = () => {
         <button className='border p-2 border-gray-[2px] my-2 hover:bg-gray-600 hover:text-white' onClick={handleBuyPolicies}>Buy Policies</button>
       </div>
       {userPolicies.length === 0 ? (
-        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] text-gray-600">Nothing to show here.</div>
+        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] mx-auto text-gray-600">{loadingPolicies ? `Loading Policies...` : 'Nothing to show here.'}
+
+        </div>
       ) : (
         <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
           {userPolicies.map((policy) => (
-            <PolicyCard key={policy._id} policy={policy}/>
+            <PolicyCard key={policy._id} policy={policy} onDelete={handlePolicyDelete}/>
           ))}
         </div>
       )}
@@ -92,7 +107,7 @@ const UserDashboard = () => {
       </div>
 
       {userClaims.length === 0 ? (
-        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] text-gray-600">Nothing to show here.</div>
+        <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] mx-auto text-gray-600">{loadingClaims ? `Loading Claims...` : 'Nothing to show here.'}</div>
       ) : (
         <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
         {userClaims.map((claim) => (
