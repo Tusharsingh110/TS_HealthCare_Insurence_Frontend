@@ -82,7 +82,7 @@ const UpdateClaim = () => {
                             id="userId"
                             name="userId"
                             value={claimDetails.userId}
-                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="User ID"
                             disabled
                         />
@@ -94,7 +94,7 @@ const UpdateClaim = () => {
                             id="policyId"
                             name="policyId"
                             value={claimDetails.policyId}
-                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full  rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Policy ID"
                             disabled
                         />
@@ -107,7 +107,7 @@ const UpdateClaim = () => {
                             name="amount"
                             value={claimDetails.amount}
                             onChange={handleChange}
-                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full  rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Claim Amount"
                             required
                         />
@@ -119,12 +119,14 @@ const UpdateClaim = () => {
                             id="status"
                             name="status"
                             value={claimDetails.status}
-                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+                            className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full rounded-md focus:ring-slate-500 focus:border-slate-500"
                             placeholder="Status"
                             disabled
                         />
                     </div>
-                    <button onClick={handleSubmit} type="submit" className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-600">Update Claim</button>
+                    {/* <button onClick={handleSubmit} type="submit" className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-600">      */}
+                    <button onClick={handleSubmit} type="submit"  className='block w-[130px] h-[40px] mx-auto px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
+                        Update Claim</button>
                 </form>
             </div>
         </div>

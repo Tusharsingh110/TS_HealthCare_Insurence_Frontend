@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import AdminClaimCard from "./AdminClaimCard";
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
   const location = useLocation();
   const userId = location.state.userId;
   const [claims, setClaims] = useState([]);
-
+  const navigate  = useNavigate();
   useEffect(() => {
     const fetchClaims = async () => {
       try {
@@ -90,6 +91,9 @@ const AdminPanel = () => {
       console.error("Error rejecting claim:", error);
     }
   };
+  const handleCreatePolicy = () => {
+    navigate('/createPolicy', {state:{userId: userId}})
+  }
 
   return (
     <div className="admin-panel max-w-[1600px] mx-auto">
@@ -97,8 +101,11 @@ const AdminPanel = () => {
       <div className="main1 my-4 pb-2 md:text-3xl ">
         Welcome to the Administrator Panel
       </div>
-      <div className="my-4 max-w-[1600px] mx-4 pb-2 md:text-lg font-bold text-left border-gray-400 border-b-[1px]">
+      <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px] flex-wrap">
+      <div className="pb-2 pt-6 text-lg font-bold ">
         All Claims
+      </div>
+      <button className='border p-2 border-gray-[2px] my-2 hover:bg-gray-600 hover:text-white' onClick={handleCreatePolicy}>Create Policy</button>
       </div>
       <div className="max-w-[1600px] pb-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mx-auto justify-center text-center">
         {claims.map((claim) => (

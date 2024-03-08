@@ -25,13 +25,13 @@ const Header = () => {
   };
 
   return (
-    <div className='max-w-[1700px] mx-auto md:flex items-center justify-between p-4 text-slate-800 text-center border-b-[1px] border-gray-200'>
+    <div className='lg:max-w-[1700px] mx-auto md:flex items-center justify-between p-4 text-slate-800 text-center border-b-[1px] border-gray-200'>
       <div className='lg:text-4xl md:text-xl sm:text-md'>Claims Management System</div>
       {loggedIn ? (
         <div className='flex gap-4 text-md'>
           {/* <button>Show Profile</button>
           <button>Update Profile</button> */}
-          <button onClick={handleLogout}>Log Out</button>
+          <button className='mx-auto border-[1.5px] p-2 hover:bg-gray-600 hover:text-white' onClick={handleLogout}>Log Out</button>
         </div>
       ) : (
         <div className='flex gap-4 text-md'>

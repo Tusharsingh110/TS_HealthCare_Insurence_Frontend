@@ -63,9 +63,9 @@ function Signin() {
         <div className="main1">
           <button
             type="submit"
-            className='border p-2 w-[80px] border-gray-[2px] my-2 hover:bg-gray-800 bg-gray-600 text-white'
+            className='border p-2 w-[100px] border-gray-[2px] my-2 hover:bg-gray-800 bg-gray-600 text-white'
           >
-            {loading ? 'Signing In...': 'Sign In'}
+            {loading ? 'Signing In': 'Sign In'}
           </button>
         </div>
       </form>

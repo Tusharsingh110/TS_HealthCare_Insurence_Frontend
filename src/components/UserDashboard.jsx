@@ -27,8 +27,9 @@ const UserDashboard = () => {
     setLoadingPolicies(true);
     const fetchUserPolicies = async () => {
       try {
-        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/`, userId , {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}` , {
+        // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/`, userId, {
           headers: {
             Authorization: `Bearer ${token}`
           }

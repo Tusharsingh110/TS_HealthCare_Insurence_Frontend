@@ -49,7 +49,7 @@ const ClaimsCard = ({ claim, userPolicies }) => {
         <span>{claim.status}</span>
       </div>
       {claim.status === 'pending' ? 
-      <button onClick={handleClaim} className='block px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 rounded-lg mt-4'>
+        <button onClick={handleClaim} className='block w-[80px] h-[30px] px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
         Update
       </button> : ''}
     </div>

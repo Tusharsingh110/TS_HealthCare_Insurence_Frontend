@@ -78,7 +78,7 @@ const ListPolicies = () => {
             <button
               disabled={policy.isBuying || policy.bought}
               onClick={() => handleBuyPolicy(policy._id, index)}
-              className={`block px-2 py-1 text-white bg-slate-800 rounded-lg mt-4 ${
+              className={`block px-2 py-1 text-white bg-slate-800  mt-4 ${
                 policy.bought ? '' : 'hover:bg-slate-600'
               }`}
             >

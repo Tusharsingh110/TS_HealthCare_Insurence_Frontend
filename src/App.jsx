@@ -13,6 +13,7 @@ import AdminPanel from './components/AdminPanel';
 import UpdateClaim from './components/UpdateClaim';
 import Home from './components/Home';
 import ListPolicies from './components/ListPolicies';
+import CreatePolicy from './components/CreatePolicy';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/fileClaim'  element={<FileClaim/>}/>  
         <Route path='/updateClaim'  element={<UpdateClaim/>}/>  
         <Route path='/listPolicies'  element={<ListPolicies/>}/>  
+        <Route path='/createPolicy'  element={<CreatePolicy/>}/>  
       </Routes>
 
     </Router>

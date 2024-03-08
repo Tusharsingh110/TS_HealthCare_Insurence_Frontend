@@ -45,7 +45,7 @@ const PolicyCard = ({ policy, onDelete }) => {
   
   return (
     <div className=' bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 rounded shadow-lg text-center '>
-      <h2 className='text-xl font-bold border-b-[1px] border-gray-400 text-left'>{policy.policyName}</h2>
+      <h2 className='md:text-lg lg:text-md font-bold border-b-[1px] border-gray-400 text-left'>{policy.policyName}</h2>
       <div className="flex justify-between pt-4">
         <span className='font-semibold'>Policy Availed Date: </span>
         <span>{availedDate.toLocaleDateString()}</span>
@@ -60,10 +60,10 @@ const PolicyCard = ({ policy, onDelete }) => {
       </div>
 
       <div className='flex justify-around'>
-        <button onClick={handleClaim} className='block w-[80px] h-[30px] px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
+        <button onClick={handleClaim} className='block md:w-[80px] md:h-[30px]  px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
           Claim
         </button>
-        <button onClick={handleDelete} disabled={deleting} className='block w-[80px] h-[30px] px-2 py-1 hover:bg-red-600 border-[1.5px] border-red-600 hover:text-white text-red-600  mt-4'>
+        <button onClick={handleDelete} disabled={deleting} className='block md:w-[80px] md:h-[30px] px-2 py-1 hover:bg-red-600 border-[1.5px] border-red-600 hover:text-white text-red-600  mt-4'>
           {deleting ? 'Deleting...' : 'Delete'}
         </button>
       </div>      
