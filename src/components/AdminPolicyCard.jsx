@@ -12,8 +12,8 @@ const handleDelete = async () => {
       const token = localStorage.getItem('token'); // Retrieve JWT token from local storage
       setDeleting(true); // Show deleting text in the button
       // Send a POST request to delete the policy
-      // await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyById/`, {
-      await axios.post('http://localhost:3000/api/policies/deletePolicyById/', {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyById/`, {
+    //   await axios.post('http://localhost:3000/api/policies/deletePolicyById/', {
         userId: policy.userId,
         policyId: policy._id
       } ,{

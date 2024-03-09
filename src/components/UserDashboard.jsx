@@ -31,7 +31,8 @@ const UserDashboard = () => {
     setLoadingPolicies(true);
     const fetchUserPolicies = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -40,7 +41,8 @@ const UserDashboard = () => {
         setUserData(response.data);
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId;
-          const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          // const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/getPolicyById/${policyId}`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -59,7 +61,8 @@ const UserDashboard = () => {
     const fetchUserClaims = async () => {
       setLoadingClaims(true);
       try {
-        const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
