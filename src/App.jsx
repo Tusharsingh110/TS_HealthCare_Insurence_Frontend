@@ -14,6 +14,7 @@ import UpdateClaim from './components/UpdateClaim';
 import Home from './components/Home';
 import ListPolicies from './components/ListPolicies';
 import CreatePolicy from './components/CreatePolicy';
+import UpdatePolicy from './components/UpdatePolicy';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -33,6 +34,7 @@ const App = () => {
         <Route path='/updateClaim'  element={<UpdateClaim/>}/>  
         <Route path='/listPolicies'  element={<ListPolicies/>}/>  
         <Route path='/createPolicy'  element={<CreatePolicy/>}/>  
+        <Route path='/updatePolicy'  element={<UpdatePolicy/>}/>  
         <Route path='/*'  element={<Home/>}/>  
       </Routes>
 

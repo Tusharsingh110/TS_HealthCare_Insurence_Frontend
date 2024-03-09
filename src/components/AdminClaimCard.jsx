@@ -20,7 +20,7 @@ const AdminClaimCard = ({ claim, onApprove, onReject }) => {
   }
 
   return (
-    <div className='bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 rounded shadow-lg text-center'>
+    <div className='bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 shadow-lg text-center'>
       <h2 className='text-xl font-bold border-b-[1px] border-gray-400 text-left'>Claim ID: {claim._id}</h2>
       <div className="flex justify-between pt-4">
         <span className='font-semibold'>Policy ID:</span>
@@ -44,10 +44,10 @@ const AdminClaimCard = ({ claim, onApprove, onReject }) => {
       </div>
       {claim.status !== 'approved' && claim.status !== 'rejected' && (
         <div className="flex justify-between">
-          <button onClick={() => onApprove(claim._id)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+          <button onClick={() => onApprove(claim._id)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 w-[100px]">
             Approve
           </button>
-          <button onClick={() => onReject(claim._id)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+          <button onClick={() => onReject(claim._id)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 w-[100px]">
             Reject
           </button>
         </div>

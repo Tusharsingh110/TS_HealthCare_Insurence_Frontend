@@ -56,10 +56,6 @@ const UserDashboard = () => {
       }
     };
   
-    fetchUserPolicies();
-  }, [userId, token, reloadKeyPolicy]);
-  
-  useEffect(() => {
     const fetchUserClaims = async () => {
       setLoadingClaims(true);
       try {
@@ -77,8 +73,8 @@ const UserDashboard = () => {
     };
   
     fetchUserClaims();
-  }, [userId, token, reloadKeyClaim]);
-  
+    fetchUserPolicies();
+  }, [userId, token, reloadKeyPolicy,reloadKeyClaim]);
 
   const handleBuyPolicies = () => {
     // Navigate to the listPolicies route and pass the userId as state
@@ -102,7 +98,10 @@ const UserDashboard = () => {
       ) : (
         <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
           {userPolicies.map((policy) => (
-            <PolicyCard key={policy._id} policy={policy} onDelete={handlePolicyDelete}/>
+            <PolicyCard 
+            key={policy._id} 
+            policy={policy} 
+            onDelete={handlePolicyDelete}/>
           ))}
         </div>
       )}
@@ -115,7 +114,11 @@ const UserDashboard = () => {
       ) : (
         <div className='max-w-[1600px] md:text-sm sm:text-[25px] mx-auto justify-center text-center grid lg:grid-cols-4 md:grid-cols-2 gap-3'>
         {userClaims.map((claim) => (
-          <ClaimsCard key={claim._id} claim={claim} userPolicies={userPolicies} onDelete={handleClaimDelete} />
+          <ClaimsCard
+           key={claim._id}
+            claim={claim}
+             userPolicies={userPolicies}
+              onDelete={handleClaimDelete} />
         ))}
       </div>
       )}
