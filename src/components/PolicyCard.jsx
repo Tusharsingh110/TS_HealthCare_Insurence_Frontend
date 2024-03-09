@@ -23,8 +23,8 @@ const PolicyCard = ({ policy, onDelete }) => {
     try {
       setDeleting(true); // Show deleting text in the button
       // Send a POST request to delete the policy
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyForUser/`, {
-      // await axios.post('http://localhost:3000/api/policies/deletePolicyForUser/', {
+      // await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyForUser/`, {
+      await axios.post('http://localhost:3000/api/policies/deletePolicyForUser/', {
         userId: policy.userId,
         policyId: policy.policyId
       } ,{
@@ -44,7 +44,7 @@ const PolicyCard = ({ policy, onDelete }) => {
   };
   
   return (
-    <div className=' bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 rounded shadow-lg text-center '>
+    <div className=' bg-opacity-50 mt-2 backdrop-filter backdrop-blur-md flex-col w-[320px] p-6 rounded shadow-lg text-center '>
       <h2 className='md:text-lg lg:text-md font-bold border-b-[1px] border-gray-400 text-left'>{policy.policyName}</h2>
       <div className="flex justify-between pt-4">
         <span className='font-semibold'>Policy Availed Date: </span>

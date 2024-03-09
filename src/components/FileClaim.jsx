@@ -35,8 +35,8 @@ const FileClaim = () => {
         alert('Amount can not be less than 0');
         throw new Error('Amount is less than 0');
       }
-      // const response = await axios.post(`http://localhost:3000/api/claims/createClaim`, {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/createClaim`, {
+      const response = await axios.post(`http://localhost:3000/api/claims/createClaim`, {
+      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/createClaim`, {
         policyId: policy.policyId,
         userId: policy.userId,
         amount: claimDetails.claimAmount
@@ -76,7 +76,7 @@ const FileClaim = () => {
               name="policyId"
               value={policy.policyId}
               onChange={handleChange}
-              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full  rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Policy ID"
               disabled
               required
@@ -90,7 +90,7 @@ const FileClaim = () => {
               name="policyName"
               value={policy.policyName}
               onChange={handleChange}
-              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full  rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Policy Name"
               disabled
               required
@@ -104,7 +104,7 @@ const FileClaim = () => {
               name="claimAmount"
               value={claimDetails.claimAmount}
               onChange={handleChange}
-              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full border-gray-300 rounded-md focus:ring-slate-500 focus:border-slate-500"
+              className="border-[1.5px] border-gray-300 mt-1 p-2 block w-full  rounded-md focus:ring-slate-500 focus:border-slate-500"
               placeholder="Enter Claim Amount"
               required
             />

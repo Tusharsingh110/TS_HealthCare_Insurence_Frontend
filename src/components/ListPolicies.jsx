@@ -12,8 +12,8 @@ const ListPolicies = () => {
     const fetchPolicies = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/`, {userId}, {
-        // const response = await axios.post(`http://localhost:3000/api/policies/policiesByUserId/`, {userId}, {
+        // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/`, {userId}, {
+        const response = await axios.post(`http://localhost:3000/api/policies/policiesByUserId/`, {userId}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -41,8 +41,8 @@ const ListPolicies = () => {
       updatedPolicies[index].isBuying = true;
       setPolicies(updatedPolicies);
 
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/buyPolicy`, requestData, {
-      // await axios.post(`http://localhost:3000/api/policies/buyPolicy`, requestData, {
+      // await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/buyPolicy`, requestData, {
+      await axios.post(`http://localhost:3000/api/policies/buyPolicy`, requestData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

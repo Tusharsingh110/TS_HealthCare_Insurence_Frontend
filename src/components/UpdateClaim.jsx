@@ -6,7 +6,7 @@ const UpdateClaim = () => {
     const location = useLocation();
     const data = location.state;
     const navigate = useNavigate();
-
+    const [isUpdating, setIsUpdating] = useState(false);
     const [claimDetails, setClaimDetails] = useState({
         userId: '',
         policyId: '',
@@ -21,8 +21,8 @@ const UpdateClaim = () => {
                 const token = localStorage.getItem('token');
 
                 // Make API request to fetch claim details with JWT token in headers
-                // const response = await axios.get(`http://localhost:3000/api/claims/getClaimById/${data.claim._id}`, {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/getClaimById/${data.claim._id}`, {
+                const response = await axios.get(`http://localhost:3000/api/claims/getClaimById/${data.claim._id}`, {
+                // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/getClaimById/${data.claim._id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -42,14 +42,15 @@ const UpdateClaim = () => {
     };
 
     const handleSubmit = async (e) => {
+        setIsUpdating(true);
         e.preventDefault();
         try {
           // Get JWT token from localStorage
           const token = localStorage.getItem('token');
           
           // Make API request to update claim with JWT token in headers
-        //   const response = await axios.put(`http://localhost:3000/api/claims/updateClaim/${data.claim._id}`, {
-          const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${data.claim._id}`, {
+          const response = await axios.put(`http://localhost:3000/api/claims/updateClaim/${data.claim._id}`, {
+        //   const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${data.claim._id}`, {
             userId: claimDetails.userId,
             policyId: claimDetails.policyId,
             status : claimDetails.status,
@@ -65,6 +66,8 @@ const UpdateClaim = () => {
         } catch (error) {
           console.error('Error updating claim:', error);
           // Handle error, e.g., show error message to user
+        } finally {
+            setIsUpdating(false);
         }
         // Navigate to userDashboard or wherever you want
         navigate("/userDashboard", { state: { userId: claimDetails.userId } });
@@ -124,9 +127,10 @@ const UpdateClaim = () => {
                             disabled
                         />
                     </div>
-                    {/* <button onClick={handleSubmit} type="submit" className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-600">      */}
+                    {/* <button onClick={handleSubmit} type="submit" className="px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-600">*/}
                     <button onClick={handleSubmit} type="submit"  className='block w-[130px] h-[40px] mx-auto px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
-                        Update Claim</button>
+                        {isUpdating ? 'Updating..' : 'Update Claim'}
+                    </button>
                 </form>
             </div>
         </div>
