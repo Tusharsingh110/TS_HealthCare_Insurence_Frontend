@@ -25,8 +25,8 @@ const AdminPanel = () => {
         setLoadingClaims(true);
         const token = localStorage.getItem("token");
         const response = await axios.post(
-          `http://localhost:3000/api/claims/allClaims`,
-          // `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
+          // `http://localhost:3000/api/claims/allClaims`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
           { userId: userId },
           {
             headers: {
@@ -50,8 +50,8 @@ const AdminPanel = () => {
       try {
         setLoadingPolicies(true);
         const response = await axios.get(
-          `http://localhost:3000/api/policies/allPolicies`
-          // `${process.env.REACT_APP_BACKEND_URL}/api/policies/allPolicies`
+          // `http://localhost:3000/api/policies/allPolicies`
+          `${process.env.REACT_APP_BACKEND_URL}/api/policies/allPolicies`
         );
         setPolicies(response.data);
       } catch (error) {
@@ -68,8 +68,8 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
-        // `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
+        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           status: "approved",
         },
@@ -98,8 +98,8 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
-        // `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
+        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           status: "rejected",
         },

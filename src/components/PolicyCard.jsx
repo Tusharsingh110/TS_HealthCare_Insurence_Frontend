@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const PolicyCard = ({ policy, onDelete }) => {
+  // console.log(policy)
   const navigate = useNavigate();
   const [deleting, setDeleting] = useState(false);
   const token = localStorage.getItem('token'); // Retrieve JWT token from local storage
@@ -23,8 +24,8 @@ const PolicyCard = ({ policy, onDelete }) => {
     try {
       setDeleting(true); // Show deleting text in the button
       // Send a POST request to delete the policy
-      // await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyForUser/`, {
-      await axios.post('http://localhost:3000/api/policies/deletePolicyForUser/', {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/deletePolicyForUser/`, {
+      // await axios.post('http://localhost:3000/api/policies/deletePolicyForUser/', {
         userId: policy.userId,
         policyId: policy.policyId
       } ,{

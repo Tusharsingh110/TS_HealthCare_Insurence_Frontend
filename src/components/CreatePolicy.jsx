@@ -51,8 +51,8 @@ const CreatePolicy = () => {
         throw new Error("Form details are invalid!");
       }
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:3000/api/policies/createPolicy', formData, {
-      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/createPolicy`, formData, {
+      // const response = await axios.post('http://localhost:3000/api/policies/createPolicy', formData, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/createPolicy`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Handle success, e.g., show success message

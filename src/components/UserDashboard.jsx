@@ -31,7 +31,8 @@ const UserDashboard = () => {
     setLoadingPolicies(true);
     const fetchUserPolicies = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/users/getUserById/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/users/getUserById/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -40,7 +41,8 @@ const UserDashboard = () => {
         setUserData(response.data);
         const policiesWithDetails = await Promise.all(userPoliciesData.map(async (policy) => {
           const policyId = policy.policyId;
-          const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          // const policyDetailResponse = await axios.get(`http://localhost:3000/api/policies/getPolicyById/${policyId}`, {
+          const policyDetailResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/policies/getPolicyById/${policyId}`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -59,7 +61,8 @@ const UserDashboard = () => {
     const fetchUserClaims = async () => {
       setLoadingClaims(true);
       try {
-        const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        // const response = await axios.get(`http://localhost:3000/api/claims/claimsByUserId/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/claimsByUserId/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -88,8 +91,12 @@ const UserDashboard = () => {
       <div className="main1 my-4 pb-2 text-3xl ">Welcome, {userData.username}</div>
       <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px] flex-wrap">
         <div className="pb-2 pt-6 text-lg font-bold ">Your Policies</div>
+        <div className="flex gap-2">
+        <button className='border p-2 border-gray-[2px] my-2  bg-gray-800 hover:bg-gray-600 text-white' onClick={()=> {navigate('/profile',{state:{userId:userId}})}}>
+          Your Profile</button>
         <button className='border p-2 border-gray-[2px] my-2  bg-gray-800 hover:bg-gray-600 text-white' onClick={handleBuyPolicies}>
           Buy Policies</button>
+          </div>
       </div>
       {userPolicies.length === 0 ? (
         <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] mx-auto text-gray-600">{loadingPolicies ? `Loading Policies...` : 'Nothing to show here.'}

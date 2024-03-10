@@ -7,7 +7,6 @@ import Register from './components/Register';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserDashboard from './components/UserDashboard';
 import FileClaim from './components/FileClaim';
-// import BuyPolicy from './components/BuyPolicy';
 import {LoginContext} from './contexts/LoginContext'
 import AdminPanel from './components/AdminPanel';
 import UpdateClaim from './components/UpdateClaim';
@@ -15,7 +14,8 @@ import Home from './components/Home';
 import ListPolicies from './components/ListPolicies';
 import CreatePolicy from './components/CreatePolicy';
 import UpdatePolicy from './components/UpdatePolicy';
-
+import Profile from './components/Profile';
+import Error from './components/Error';
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   
@@ -30,12 +30,13 @@ const App = () => {
         <Route path='/signIn'  element={<SignIn/>}/>  
         <Route path='/admin'  element={<AdminPanel/>}/>  
         <Route path='/userDashboard'  element={<UserDashboard/>}/>  
+        <Route path='/profile'  element={<Profile/>}/>  
         <Route path='/fileClaim'  element={<FileClaim/>}/>  
         <Route path='/updateClaim'  element={<UpdateClaim/>}/>  
         <Route path='/listPolicies'  element={<ListPolicies/>}/>  
         <Route path='/createPolicy'  element={<CreatePolicy/>}/>  
         <Route path='/updatePolicy'  element={<UpdatePolicy/>}/>  
-        <Route path='/*'  element={<Home/>}/>  
+        <Route path='/*'  element={<Error/>}/>  
       </Routes>
 
     </Router>
