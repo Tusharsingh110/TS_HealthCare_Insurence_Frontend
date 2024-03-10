@@ -12,7 +12,7 @@ const ListPolicies = () => {
     const fetchPolicies = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/`, {userId}, {
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/policies/policiesByUserId/`, {
         // const response = await axios.get(`http://localhost:3000/api/policies/policiesByUserId/`, {
           headers: {
             Authorization: `Bearer ${token}`
