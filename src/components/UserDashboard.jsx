@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import '../styles/global.css'
 import { useLocation, useNavigate } from 'react-router-dom';
 import PolicyCard from './PolicyCard.jsx';
 import ClaimsCard from './ClaimCard.jsx';
+import { LoginContext } from '../contexts/LoginContext.js';
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
+  const {loggedIn} = useContext(LoginContext);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if(!token) {
+      alert("Please Sign In to continue!!");
+      navigate('/signin');
+      return;
+    }
+  }, []);
   const [reloadKeyPolicy, setReloadKeyPolicy] = useState(0);
   const [reloadKeyClaim, setReloadKeyClaim] = useState(0);
 
@@ -15,7 +26,6 @@ const UserDashboard = () => {
   const handleClaimDelete = () => {
     setReloadKeyClaim(prevKey => prevKey + 1); // Update the key to force remounting ClaimCard
   };
-  const navigate = useNavigate();
   const location = useLocation();
   const userId = location.state.userId;
   // console.log(userId)
@@ -77,7 +87,7 @@ const UserDashboard = () => {
   
     fetchUserClaims();
     fetchUserPolicies();
-  }, [userId, token, reloadKeyPolicy,reloadKeyClaim]);
+  }, [ reloadKeyPolicy,reloadKeyClaim]);
 
   const handleBuyPolicies = () => {
     // Navigate to the listPolicies route and pass the userId as state

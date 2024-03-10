@@ -1,14 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext";
 function Signin() {
-  const { setLoggedIn } = useContext(LoginContext);
+  const { setLoggedIn,loggedIn,userId } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if (token !== null) {
+        navigate("/userDashboard", {state:{userId:userId}});
+    }
+  }, [navigate]); // Make sure to include navigate in the dependency array to avoid eslint warnings
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading,isLoading] = useState(false);
-  const navigate = useNavigate();
   // console.log(process)
   const handlesignin = async (e) => {
     isLoading(true);
