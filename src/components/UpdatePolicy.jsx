@@ -59,7 +59,7 @@ const UpdatePolicy = () => {
       // Make API request to update policy
       await axios.put(
         // `http://localhost:3000/api/policies/updatePolicybyId/${policy._id}`,
-        `${process.env.REACT_APP_BACKEND_URL}/policies/updatePolicybyId/${policy._id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/policies/updatePolicybyId/${policy._id}`,
         updatedPolicy , {
             headers: { Authorization: `Bearer ${token}` }
         }
