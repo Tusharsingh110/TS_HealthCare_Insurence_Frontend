@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import LoginContextProvider from "../contexts/LoginContextProvider";
+import LoginContext from "../contexts/LoginContext";
 const ProfileComponent = () => {
-  const {setLoggedIn} = useContext(LoginContextProvider);
+  const {setLoggedIn} = useContext(LoginContext);
   const [userData, setUserData] = useState({});
   const [editable, setEditable] = useState(false);
   const [saving, setSaving] = useState(false);
