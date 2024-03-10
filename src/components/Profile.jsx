@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import LoginContextProvider from "../contexts/LoginContextProvider";
 const ProfileComponent = () => {
+  const {setLoggedIn} = useContext(LoginContextProvider);
   const [userData, setUserData] = useState({});
   const [editable, setEditable] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -68,6 +70,7 @@ const ProfileComponent = () => {
       });
       alert("User Deleted Successfully.");
       localStorage.removeItem('token');
+      setLoggedIn(false);
       navigate('/');
     } catch (error) {
       console.error("Error deleting the user.", error);
