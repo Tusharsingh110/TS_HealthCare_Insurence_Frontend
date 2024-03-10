@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import LoginContext from "../contexts/LoginContext";
+import {LoginContext} from "../contexts/LoginContext";
 const ProfileComponent = () => {
   const {setLoggedIn} = useContext(LoginContext);
   const [userData, setUserData] = useState({});
@@ -23,7 +23,7 @@ const ProfileComponent = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-        //   `http://localhost:3000/api/users/getUserById/`,
+          // `http://localhost:3000/api/users/getUserById/`,
           `${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/`,
           {
             headers: {
@@ -62,7 +62,7 @@ const ProfileComponent = () => {
     try {
       const token = localStorage.getItem("token");
       setDeleting(true);
-    //   await axios.delete(`http://localhost:3000/api/users/deleteUser/`, {
+      // await axios.delete(`http://localhost:3000/api/users/deleteUser/`, {
       await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/users/deleteUser/`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ const ProfileComponent = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         await axios.put(
-        //   `http://localhost:3000/api/users/updateUser`,
+          // `http://localhost:3000/api/users/updateUser`,
           `${process.env.REACT_APP_BACKEND_URL}/api/users/updateUser`,
           formData,
           {
