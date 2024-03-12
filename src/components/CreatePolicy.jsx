@@ -51,8 +51,8 @@ const CreatePolicy = () => {
         throw new Error("Form details are invalid!");
       }
       const token = localStorage.getItem('token');
-      // const response = await axios.post('http://localhost:3000/api/policies/createPolicy', formData, {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/createPolicy`, formData, {
+      const response = await axios.post('http://localhost:3000/api/policies/createPolicy', formData, {
+      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/policies/createPolicy`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Handle success, e.g., show success message
@@ -72,7 +72,7 @@ const CreatePolicy = () => {
 return (
   <div className="main1 mt-20">
     <div className='bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[400px] p-6 rounded shadow-lg text-center'>
-      <h2 className='text-xl font-bold border-b-[1px] border-gray-400 text-left mb-4'>Create Policy</h2>
+      <h2 className='text-xl font-bold border-b-[1px] border-gray-400 text-left mb-4'>Create Plan</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="policyName" className="block text-sm font-medium text-gray-700">Policy Name</label>
@@ -130,7 +130,7 @@ return (
           {errors.duration && <p className="text-red-500">{errors.duration}</p>}
         </div>
         <button type="submit" className='block w-[130px] h-[40px] mx-auto px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4'>
-         {isCreating ? "Creating" : 'Create Policy'}
+         {isCreating ? "Creating" : 'Create Plan'}
         </button>
         {error && <p className="text-red-500">{error}</p>}
       </form>

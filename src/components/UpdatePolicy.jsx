@@ -58,8 +58,8 @@ const UpdatePolicy = () => {
           }
       // Make API request to update policy
       await axios.put(
-        // `http://localhost:3000/api/policies/updatePolicybyId/${policy._id}`,
-        `${process.env.REACT_APP_BACKEND_URL}/api/policies/updatePolicybyId/${policy._id}`,
+        `http://localhost:3000/api/policies/updatePolicybyId/${policy._id}`,
+        // `${process.env.REACT_APP_BACKEND_URL}/api/policies/updatePolicybyId/${policy._id}`,
         updatedPolicy , {
             headers: { Authorization: `Bearer ${token}` }
         }
@@ -82,7 +82,7 @@ const UpdatePolicy = () => {
     <div className="main1 mt-20">
       <div className="bg-opacity-50 backdrop-filter backdrop-blur-md flex-col w-[400px] p-6 rounded shadow-lg text-center">
         <h2 className="text-xl font-bold border-b-[1px] border-gray-400 text-left mb-4">
-          Update Policy
+          Update Plan
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -90,7 +90,7 @@ const UpdatePolicy = () => {
               htmlFor="policyName"
               className="block text-sm font-medium text-gray-700"
             >
-              Policy Name
+              Plan Name
             </label>
             <input
               type="text"
@@ -165,7 +165,7 @@ const UpdatePolicy = () => {
             className="block w-[130px] h-[40px] mx-auto px-2 py-1 text-white bg-slate-800 hover:bg-slate-600 mt-4"
             disabled={updating}
           >
-            {updating ? "Updating.." : "Update Policy"}
+            {updating ? "Updating.." : "Update Plan"}
           </button>
           {error && <p className="text-red-500">{error}</p>}
         </form>

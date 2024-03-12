@@ -47,8 +47,8 @@ function Register() {
       if (!validateForm()) return;
 
       captchaRef.current.reset();
-      // const response = await axios.post(`http://localhost:3000/api/users/signup`,{ ...formData, recaptchaValue } );
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,{ ...formData, recaptchaValue } );
+      const response = await axios.post(`http://localhost:3000/api/users/signup`,{ ...formData, recaptchaValue } );
+      // const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,{ ...formData, recaptchaValue } );
       alert("User Created Successfully!!!");
       navigate('/signIn');
     } catch (error) {

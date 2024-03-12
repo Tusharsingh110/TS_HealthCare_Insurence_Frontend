@@ -37,8 +37,8 @@ const ClaimsCard = React.memo(({ claim, userPolicies, onDelete }) => {
       const token  = localStorage.getItem('token');
       setDeleting(true); // Show deleting text in the button
       // Send a POST request to delete the policy
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/deleteClaimById/`, {
-      // await axios.post('http://localhost:3000/api/claims/deleteClaimById/', {
+      // await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/claims/deleteClaimById/`, {
+      await axios.post('http://localhost:3000/api/claims/deleteClaimById/', {
         userId: claim.userId,
         claimId: claim._id
       } ,{

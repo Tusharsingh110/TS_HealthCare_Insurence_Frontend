@@ -25,8 +25,8 @@ const AdminPanel = () => {
         setLoadingClaims(true);
         const token = localStorage.getItem("token");
         const response = await axios.post(
-          // `http://localhost:3000/api/claims/allClaims`,
-          `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
+          `http://localhost:3000/api/claims/allClaims`,
+          // `${process.env.REACT_APP_BACKEND_URL}/api/claims/allClaims`,
           { userId: userId },
           {
             headers: {
@@ -50,8 +50,8 @@ const AdminPanel = () => {
       try {
         setLoadingPolicies(true);
         const response = await axios.get(
-          // `http://localhost:3000/api/policies/allPolicies`
-          `${process.env.REACT_APP_BACKEND_URL}/api/policies/allPolicies`
+          `http://localhost:3000/api/policies/allPolicies`
+          // `${process.env.REACT_APP_BACKEND_URL}/api/policies/allPolicies`
         );
         setPolicies(response.data);
       } catch (error) {
@@ -68,8 +68,8 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
-        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
+        `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
+        // `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           status: "approved",
         },
@@ -98,8 +98,8 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        // `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
-        `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
+        `http://localhost:3000/api/claims/updateClaimStatusById/${claimId}`,
+        // `${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaimStatusById/${claimId}`,
         {
           status: "rejected",
         },
@@ -139,9 +139,9 @@ const AdminPanel = () => {
       <div className="mx-6">
       <div className="flex max-w-[1600px] mx-auto justify-between border-gray-400 border-b-[1px] flex-wrap">
       <div className="pb-2 pt-6 text-lg font-bold ">
-        All Policies
+        All Plans
       </div>
-      <button className='border p-2 border-gray-[2px] my-2  text-sm h-md   bg-gray-800 hover:bg-gray-600 text-white' onClick={handleCreatePolicy}>Create Policy</button>
+      <button className='border p-2 border-gray-[2px] my-2  text-sm h-md   bg-gray-800 hover:bg-gray-600 text-white' onClick={handleCreatePolicy}>Create Plan</button>
       </div>
       {policies.length === 0 ? (
         <div className="lg:text-lg pt-10 md:text-md max-w-[1600px] mx-auto text-gray-600">{loadingPolicies ? `Loading Policies...` : 'Nothing to show here.'}

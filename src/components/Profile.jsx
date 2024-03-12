@@ -23,8 +23,8 @@ const ProfileComponent = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          // `http://localhost:3000/api/users/getUserById/`,
-          `${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/`,
+          `http://localhost:3000/api/users/getUserById/`,
+          // `${process.env.REACT_APP_BACKEND_URL}/api/users/getUserById/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -62,8 +62,8 @@ const ProfileComponent = () => {
     try {
       const token = localStorage.getItem("token");
       setDeleting(true);
-      // await axios.delete(`http://localhost:3000/api/users/deleteUser/`, {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/users/deleteUser/`, {
+      await axios.delete(`http://localhost:3000/api/users/deleteUser/`, {
+      // await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/users/deleteUser/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -84,8 +84,8 @@ const ProfileComponent = () => {
     if (Object.keys(validationErrors).length === 0) {
       try {
         await axios.put(
-          // `http://localhost:3000/api/users/updateUser`,
-          `${process.env.REACT_APP_BACKEND_URL}/api/users/updateUser`,
+          `http://localhost:3000/api/users/updateUser`,
+          // `${process.env.REACT_APP_BACKEND_URL}/api/users/updateUser`,
           formData,
           {
             headers: {

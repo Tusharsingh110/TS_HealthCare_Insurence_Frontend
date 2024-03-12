@@ -21,8 +21,8 @@ const UpdateClaim = () => {
                 const token = localStorage.getItem('token');
 
                 // Make API request to fetch claim details with JWT token in headers
-                // const response = await axios.get(`http://localhost:3000/api/claims/getClaimById/${data.claim._id}`, {
-                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/getClaimById/${data.claim._id}`, {
+                const response = await axios.get(`http://localhost:3000/api/claims/getClaimById/${data.claim._id}`, {
+                // const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/claims/getClaimById/${data.claim._id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -49,8 +49,8 @@ const UpdateClaim = () => {
           const token = localStorage.getItem('token');
           
           // Make API request to update claim with JWT token in headers
-        //   const response = await axios.put(`http://localhost:3000/api/claims/updateClaim/${data.claim._id}`, {
-          const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${data.claim._id}`, {
+          const response = await axios.put(`http://localhost:3000/api/claims/updateClaim/${data.claim._id}`, {
+        //   const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/claims/updateClaim/${data.claim._id}`, {
             userId: claimDetails.userId,
             policyId: claimDetails.policyId,
             status : claimDetails.status,
